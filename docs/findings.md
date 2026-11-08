@@ -15,3 +15,13 @@
 - Aug 2020 +8.1 is partly a base effect: Aug 2019 was the weakest month of 2019
 - Month-1 retention: 17-20% (H1 2019 cohorts) vs 12-15% (later). Decline partly a LEFT-CENSORING artifact
 - Summer cohorts (Jul/Aug) retain worst: 13.5-13.9% month-1
+
+## M1 part 2: seasonality + events
+- STL (period 52, 104 weeks) OVERFIT: seasonal strength 1.00, zero leftover. Rejected.
+- Replaced with robust regression: cubic trend + 3 Fourier terms + event flags. Validated on synthetic planted shock.
+- Underlying trend: -12.9% peak to low (excl. lockdown). Cubic edge effect makes first-vs-last unreliable.
+- Seasonal swing: 42 pts. Peak = week of 20 May, low = week of 24 Dec.
+- Black Friday: +88% vs a normal week. Lockdown (16 Mar - 4 May 2020): -17% on average
+- Lockdown hides 2 phases: crash in March, then +70% online surge week of 6 Apr (Easter)
+- Recurring unexplained spikes: late Sep (both years, +43% / +63%), summer sale mid/late June (+42 to +47%)
+- Pre-Christmas rush week of 16 Dec 2019: +37%
