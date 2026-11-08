@@ -25,3 +25,11 @@
 - Lockdown hides 2 phases: crash in March, then +70% online surge week of 6 Apr (Easter)
 - Recurring unexplained spikes: late Sep (both years, +43% / +63%), summer sale mid/late June (+42 to +47%)
 - Pre-Christmas rush week of 16 Dec 2019: +37%
+
+## M1 part 3: basket split + channels
+- BUG FOUND: DuckDB sum() of ints -> HUGEINT -> Polars Decimal(scale 0) -> integer division. Fix: ::bigint. Caught by identity check (parts must add to total).
+- June 2020 basket -14.0 = -9.5 fewer items per order + -4.5 cheaper items. Markdown hypothesis only 1/3 right.
+- Structural shift: items per order down YoY in 9 of 11 months; price per item up in 7 of 11. Started pre-COVID.
+- April 2020: store channel = ZERO sales. Online orders +57% (Jan -> Apr), items/order +12%, basket +10%.
+- May 2020 store reopening: 3.14 items/order vs 2.35 pre-lockdown (pent-up demand)
+- Channel mapping 1 = store, 2 = online now SUPPORTED by data (channel 1 zero during lockdown)
