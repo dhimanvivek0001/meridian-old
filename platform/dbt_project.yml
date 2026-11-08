@@ -8,5 +8,5 @@ test-paths: ["tests"]
 models:
   meridian:
     staging:
-      +materialized: view
+      +materialized: table
       +schema: staging
