@@ -16,3 +16,4 @@ ruff
 pre-commit
 pytest
 nbstripout
+scikit-learn
