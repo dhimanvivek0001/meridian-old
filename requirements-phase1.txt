@@ -1,0 +1,17 @@
+polars
+duckdb
+pyarrow
+pandas
+numpy
+scipy
+statsmodels
+matplotlib
+plotly
+jupyterlab
+ipykernel
+kaggle
+python-dotenv
+dbt-duckdb
+ruff
+pre-commit
+pytest
