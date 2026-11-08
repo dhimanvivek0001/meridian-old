@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: hm
+    description: Raw H&M Kaggle files, converted to Parquet in step 1
+    meta:
+      external_location: "../data/parquet/{name}.parquet"
+    tables:
+      - name: transactions_train
+      - name: customers
+      - name: articles
