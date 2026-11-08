@@ -1,0 +1,80 @@
+version: 2
+
+models:
+  - name: dim_date
+    description: One row per calendar day, Sep 2018 to Sep 2020
+    columns:
+      - name: date_day
+        data_tests: [unique, not_null]
+      - name: week_start
+        data_tests: [not_null]
+
+  - name: dim_customer
+    description: One row per registered customer, with lifetime purchase stats
+    columns:
+      - name: customer_id
+        data_tests: [unique, not_null]
+      - name: has_purchased
+        data_tests: [not_null]
+      - name: age_band
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['16-24', '25-34', '35-44', '45-54', '55+', 'unknown']
+
+  - name: dim_article
+    description: One row per article, with lifetime sales stats
+    columns:
+      - name: article_id
+        data_tests: [unique, not_null]
+      - name: is_never_sold
+        data_tests: [not_null]
+
+  - name: fct_sales
+    description: One row per item sold
+    columns:
+      - name: sale_line_id
+        data_tests: [unique, not_null]
+      - name: sale_date
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_date')
+                field: date_day
+      - name: customer_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_customer')
+                field: customer_id
+      - name: article_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_article')
+                field: article_id
+      - name: sales_channel
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['store', 'online']
+
+  - name: fct_weekly_customer
+    description: One row per customer per week with at least one purchase
+    columns:
+      - name: customer_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_customer')
+                field: customer_id
+      - name: week_start
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_date')
+                field: date_day
