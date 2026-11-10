@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: customer_features
+    description: One row per purchasing customer, behaviour features as of var('as_of_date')
+    columns:
+      - name: customer_id
+        data_tests: [unique, not_null]
+      - name: recency_days
+        data_tests: [not_null]
+      - name: frequency
+        data_tests: [not_null]
+      - name: monetary
+        data_tests: [not_null]
