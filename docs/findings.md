@@ -33,3 +33,10 @@
 - April 2020: store channel = ZERO sales. Online orders +57% (Jan -> Apr), items/order +12%, basket +10%.
 - May 2020 store reopening: 3.14 items/order vs 2.35 pre-lockdown (pent-up demand)
 - Channel mapping 1 = store, 2 = online now SUPPORTED by data (channel 1 zero during lockdown)
+
+## Phase 1: from-scratch builds
+- Build 1 linear regression (log year-2 spend): R^2 0.506 vs 0 baseline; top driver = past spend. Matches sklearn.
+- Build 2 logistic regression (buys again in year 2): AUC 0.834, log loss 0.478 vs 0.655 baseline, lift 2.1x in riskiest decile (76.9% vs 36.3% churn).
+- Drivers differ by question: RETURN driven by frequency (odds x9.07/std) + recency (x0.58); AMOUNT driven by spend. -> hurdle model for CLV.
+- Accuracy trap: 76.1% vs 63.7% for "everyone returns". Use AUC / lift, not accuracy.
+- Collinearity: units weight unstable (-0.008 vs -0.019) with zero effect on AUC.
